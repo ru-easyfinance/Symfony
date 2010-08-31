@@ -63,6 +63,16 @@ class sfMessageSource_XLIFF extends sfMessageSource_File
 
     $translations = array();
 
+    $includes = $xml->xpath('//include');
+    foreach ($includes as $include) {
+        if (isset($include['href'])) {
+            $data = $this->loadData(dirname($filename).'/'.(string)$include['href']);
+            if ($data) {
+                $translations = array_merge($translations, $data);
+            }
+        }
+    }
+
     foreach ($translationUnit as $unit)
     {
       $source = (string) $unit->source;
