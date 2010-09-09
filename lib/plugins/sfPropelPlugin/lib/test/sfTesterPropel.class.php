@@ -41,7 +41,7 @@ class sfTesterPropel extends sfTester
    *
    * @return sfTestFunctionalBase|sfTester
    */
-  public function check($model, $criteria, $value = true)
+  public function check($model, $criteria, $value = true, &$objects = null)
   {
     if (null === $criteria)
     {
