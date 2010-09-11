@@ -163,7 +163,7 @@ class Doctrine_Import_Mysql extends Doctrine_Import
                           'unsigned'      => (bool) $decl['unsigned'],
                           'values'        => $values,
                           'primary'       => (strtolower($val['key']) == 'pri'),
-                          'default'       => $val['default'],
+                          'default'       => (!empty($val['default']) ? $val['default'] : (((bool) ($val['null'] != 'YES')) ? '' : NULL)),
                           'notnull'       => (bool) ($val['null'] != 'YES'),
                           'autoincrement' => (bool) (strpos($val['extra'], 'auto_increment') !== false),
                           );
