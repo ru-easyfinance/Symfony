@@ -22,7 +22,8 @@ class sfPropelPager extends sfPager
   protected
     $criteria               = null,
     $peer_method_name       = 'doSelect',
-    $peer_count_method_name = 'doCount';
+    $peer_count_method_name = 'doCount',
+    $results;
 
   /**
    * Constructor.
@@ -114,7 +115,10 @@ class sfPropelPager extends sfPager
    */
   public function getResults()
   {
-    return call_user_func(array($this->getClassPeer(), $this->getPeerMethod()), $this->getCriteria());
+    if (null === $this->results) {
+      $this->results = call_user_func(array($this->getClassPeer(), $this->getPeerMethod()), $this->getCriteria());
+    }
+    return $this->results;
   }
 
   /**
