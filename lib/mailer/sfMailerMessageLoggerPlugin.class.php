@@ -67,7 +67,7 @@ class sfMailerMessageLoggerPlugin implements Swift_Events_SendListener
    */
   public function beforeSendPerformed(Swift_Events_SendEvent $evt)
   {
-    $this->messages[] = $message = clone $evt->getMessage();
+    $this->messages[] = $message = unserialize(serialize($evt->getMessage()));
 
     $to = null === $message->getTo() ? '' : implode(', ', array_keys($message->getTo()));
 
