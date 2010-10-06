@@ -309,6 +309,16 @@ abstract class sfPager implements Iterator, Countable
   }
 
   /**
+   * Returns the number of left results.
+   *
+   * @return integer
+   */
+  public function getNbLeftResults()
+  {
+    return $this->getNbResults() - $this->getMaxPerPage() * $this->getPage();
+  }
+
+  /**
    * Returns the first page number.
    *
    * @return integer
